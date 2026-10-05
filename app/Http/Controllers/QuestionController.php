@@ -25,9 +25,20 @@ class QuestionController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+   public function store(Request $request)
 {
-    // dd($request->all());
+    $request->validate([
+        'nama'       => 'required|min:5',
+        'email'      => ['required', 'email'],
+        'pertanyaan' => 'required|min:10|max:300',
+    ], [
+        'nama.required'       => 'Nama tidak boleh kosong',
+        'nama.min'            => 'Nama minimal 5 karakter',
+        'email.required'      => 'Email tidak boleh kosong',
+        'email.email'         => 'Email Tidak valid',
+        'pertanyaan.required' => 'Pertanyaan tidak boleh kosong',
+        'pertanyaan.min'      => 'Pertanyaan minimal 10 karakter',
+    ]);
 
     $data['nama']       = $request->nama;
     $data['email']      = $request->email;
@@ -35,6 +46,7 @@ class QuestionController extends Controller
 
     return view('home-question-respon', $data);
 }
+
     /**
      * Display the specified resource.
      */
