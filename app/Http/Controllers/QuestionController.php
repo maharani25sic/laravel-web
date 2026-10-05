@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class QuestionConrtoller extends Controller
+class QuestionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,7 +27,8 @@ class QuestionConrtoller extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Menampilkan seluruh data yang dikirim dari form
+        dd($request->all());
     }
 
     /**
