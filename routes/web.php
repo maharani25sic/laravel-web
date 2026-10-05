@@ -36,3 +36,6 @@ Route::get('/about', function () {
 // Route Matakuliah
 Route::get('/matakuliah', [MatakuliahController::class, 'index']);
 Route::get('/matakuliah/show/{kode}', [MatakuliahController::class, 'show']);
+
+ Route::post ( 'question/store', [QuestionConrtoller::class, 'store'])
+ ->name(question.store);
