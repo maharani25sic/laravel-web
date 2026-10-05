@@ -88,7 +88,7 @@
     </section>
 
     <!-- Content Section -->
-    <section id="content" class="container ">
+    <section id="content" class="container">
         <div class="row">
             <div class="col-md-6">
                 {{-- About --}}
@@ -154,49 +154,49 @@
 
             <div class="col-md-6">
 
-            <div class="card mb-4">
-   <div class="card mb-4">
-    <div class="card-body">
-        <h5 class="card-title">Form Pertanyaan</h5>
-        @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
+                <!-- Form Pertanyaan -->
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Form Pertanyaan</h5>
 
-        <!-- Ubah tag <form> dan tambahkan @csrf -->
-        <form action="{{ route('question.store') }}" method="POST">
-            @csrf
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
 
-            <!-- Input Nama: Tambahkan name="nama" -->
-            <div class="mb-3">
-                <label for="nama" class="form-label">Nama</label>
-                <input type="text" class="form-control" id="nama" name="nama">
-            </div>
+                        <form action="{{ route('question.store') }}" method="POST">
+                            @csrf
 
-            <!-- Input Email: Tambahkan name="email" -->
-            <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" name="email">
-            </div>
+                            <!-- Input Nama -->
+                            <div class="mb-3">
+                                <label for="nama" class="form-label">Nama</label>
+                                <input type="text" class="form-control" id="nama" name="nama" value="{{ old('nama') }}">
+                            </div>
 
-            <!-- Textarea Pertanyaan: Tambahkan name="pertanyaan" -->
-            <div class="mb-3">
-                <label for="pertanyaan" class="form-label">Pertanyaan</label>
-                <textarea class="form-control" id="pertanyaan" name="pertanyaan" rows="3"></textarea>
-            </div>
+                            <!-- Input Email -->
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}">
+                            </div>
 
-            <button type="submit" class="btn btn-primary">Kirim Pertanyaan</button>
-        </form>
-    </div>
-</div>
+                            <!-- Textarea Pertanyaan -->
+                            <div class="mb-3">
+                                <label for="pertanyaan" class="form-label">Pertanyaan</label>
+                                <textarea class="form-control" id="pertanyaan" name="pertanyaan" rows="3">{{ old('pertanyaan') }}</textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Kirim Pertanyaan</button>
+                        </form>
+                    </div>
+                </div>
 
                 {{-- Alerts --}}
-                <div class="card ">
+                <div class="card">
                     <div class="card-body">
                         <h3 class="h5 mb-3">Alerts</h3>
                         <div class="alert alert-primary mb-2">Informational alert</div>
