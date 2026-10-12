@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\MatakuliahController;
-use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\DashboardController;
 
 // Halaman Utama & Home
 Route::get('/', [HomeController::class, 'index']);
@@ -40,3 +40,10 @@ Route::get('/matakuliah/show/{kode}', [MatakuliahController::class, 'show']);
 
 Route::post('question/store', [QuestionController::class, 'store'])
     ->name('question.store');
+
+Route::get('/home-question-respon', function () {
+    return view('home-question-respon');
+})->name('home-question-respon');
+
+Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
