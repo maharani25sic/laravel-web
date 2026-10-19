@@ -1,10 +1,12 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\MatakuliahController;
-use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PelangganController;
+use App\Http\Controllers\QuestionController;
+use Illuminate\Support\Facades\Route;
 
 // Halaman Utama & Home
 Route::get('/', [HomeController::class, 'index']);
@@ -20,11 +22,11 @@ Route::get('/mahasiswa', function () {
 })->name('mahasiswa.show');
 
 Route::get('/nama/{param1}', function ($param1) {
-    return 'Nama saya: '.$param1;
+    return 'Nama saya: ' . $param1;
 });
 
 Route::get('/nim/{param1?}', function ($param1 = '') {
-    return 'NIM saya: '.$param1;
+    return 'NIM saya: ' . $param1;
 });
 
 Route::get('/mahasiswa/{param1}', [MahasiswaController::class, 'show']);
@@ -47,3 +49,4 @@ Route::get('/home-question-respon', function () {
 
 Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
+Route::resource('pelanggan', PelangganController::class);
