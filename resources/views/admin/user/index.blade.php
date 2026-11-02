@@ -19,7 +19,7 @@
             <p class="mb-0 text-muted">List data seluruh user</p>
         </div>
         <div class="btn-toolbar mb-2 mb-md-0">
-            <a href="{{ route('user.create') }}" class="btn btn-emerald text-white fw-bold d-inline-flex align-items-center" style="background-color: #10b981;">
+            <a href="{{ route('user.create') }}" class="btn text-white fw-bold d-inline-flex align-items-center" style="background-color: #10b981;">
                 Tambah User
             </a>
         </div>
@@ -42,12 +42,14 @@
                         <td><span class="fw-normal">{{ $user->email }}</span></td>
                         <td><span class="fw-normal text-truncate d-inline-block" style="max-width: 250px;">{{ $user->password }}</span></td>
                         <td>
-                            <a href="{{ route('user.edit', $user->id) }}" class="btn btn-sm btn-primary d-inline-flex align-items-center">
+                            <!-- Tombol Edit Warna Biru Cerah Sesuai Contoh Dosen -->
+                            <a href="{{ route('user.edit', $user->id) }}" class="btn btn-sm text-white d-inline-flex align-items-center me-1" style="background-color: #0d6efd;">
                                 <svg class="icon icon-xs me-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
                                 </svg>
                                 Edit
                             </a>
+                            <!-- Tombol Hapus -->
                             <form action="{{ route('user.destroy', $user->id) }}" method="POST" class="d-inline">
                                 @csrf
                                 @method('DELETE')

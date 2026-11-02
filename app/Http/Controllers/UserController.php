@@ -8,32 +8,24 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    /**
-     * Tampilkan daftar user
-     */
     public function index()
     {
-        $data['dataUser'] = User::all();
-        return view('admin.user.index', $data);
+        $dataUser = User::all();
+        return view('admin.user.index', compact('dataUser'));
     }
 
-    /**
-     * Tampilkan form tambah user
-     */
     public function create()
-{
-    return view('admin.user.create');
-}
+    {
+        return view('admin.user.create');
+    }
 
-    /**
-     * Simpan user baru ke database
-     */
     public function store(Request $request)
     {
+        // 1. Validasi sesuai instruksi dosen
         $request->validate([
-            'name'     => 'required|string|max:255',
+            'name'     => 'required|string|max:100',
             'email'    => 'required|email|unique:users,email',
-            'password' => 'required|min:6|confirmed',
+            'password' => 'required|string|min:8|confirmed',
         ]);
 
         User::create([
@@ -45,24 +37,19 @@ class UserController extends Controller
         return redirect()->route('user.index')->with('success', 'User berhasil ditambahkan!');
     }
 
-    /**
-     * Tampilkan form edit user
-     */
     public function edit($id)
     {
         $user = User::findOrFail($id);
         return view('admin.user.edit', compact('user'));
     }
 
-    /**
-     * Update data user
-     */
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
         $user = User::findOrFail($id);
 
+        // Validasi edit
         $request->validate([
-            'name'  => 'required|string|max:255',
+            'name'  => 'required|string|max:100',
             'email' => 'required|email|unique:users,email,' . $id,
         ]);
 
@@ -71,8 +58,9 @@ class UserController extends Controller
             'email' => $request->email,
         ];
 
-        if ($request->filled('password')) {$request->validate([
-                'password' => 'min:6|confirmed',
+        if ($request->filled('password')) {
+            $request->validate([
+                'password' => 'min:8|confirmed',
             ]);
             $data['password'] = Hash::make($request->password);
         }
@@ -82,12 +70,10 @@ class UserController extends Controller
         return redirect()->route('user.index')->with('success', 'User berhasil diperbarui!');
     }
 
-    /**
-     * Hapus data user
-     */
     public function destroy($id)
     {
-        $user = User::findOrFail($id);$user->delete();
+        $user = User::findOrFail($id);
+        $user->delete();
 
         return redirect()->route('user.index')->with('success', 'User berhasil dihapus!');
     }
