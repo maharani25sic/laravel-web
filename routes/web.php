@@ -7,6 +7,7 @@ use App\Http\Controllers\MatakuliahController;
 use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\QuestionController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 
 // Halaman Utama & Home
 Route::get('/', [HomeController::class, 'index']);
@@ -50,3 +51,4 @@ Route::get('/home-question-respon', function () {
 Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 Route::resource('pelanggan', PelangganController::class);
+Route::resource('user', UserController::class);
