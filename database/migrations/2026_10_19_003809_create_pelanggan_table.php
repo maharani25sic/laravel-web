@@ -9,19 +9,19 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-   public function up()
-{
-    Schema::create('pelanggan', function (Blueprint $table) {
-        $table->increments('pelanggan_id');
-        $table->string('first_name', 100);
-        $table->string('last_name', 100);
-        $table->date('birthday')->nullable();
-        $table->enum('gender', ['Male', 'Female', 'Other'])->nullable();
-        $table->string('email')->unique();
-        $table->string('phone', 20)->nullable();
-        $table->timestamps();
-    });
-}
+    public function up()
+    {
+        Schema::create('pelanggan', function (Blueprint $table) {
+            $table->id('pelanggan_id');
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->date('birthday');
+            $table->string('gender');
+            $table->string('email');
+            $table->string('phone');
+            $table->timestamps();
+        });
+    }
 
     /**
      * Reverse the migrations.
